@@ -10,6 +10,7 @@ import (
 )
 
 const defaultSDN = "neutron"
+const omitSDN = "omit-sdn"
 
 func networkingReadAttributesTags(d *schema.ResourceData, tags []string) {
 	expandObjectReadTags(d, tags)

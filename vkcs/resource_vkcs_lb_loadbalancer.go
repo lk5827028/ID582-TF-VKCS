@@ -167,7 +167,7 @@ func resourceLoadBalancerCreate(ctx context.Context, d *schema.ResourceData, met
 
 	// Once the load-balancer has been created, apply any requested security groups
 	// to the port that was created behind the scenes.
-	networkingClient, err := config.NetworkingV2Client(getRegion(d, config), getSDN(d))
+	networkingClient, err := config.NetworkingV2Client(getRegion(d, config), omitSDN)
 	if err != nil {
 		return diag.Errorf("Error creating VKCS networking client: %s", err)
 	}
@@ -210,7 +210,7 @@ func resourceLoadBalancerRead(ctx context.Context, d *schema.ResourceData, meta 
 
 	// Get any security groups on the VIP Port.
 	if vipPortID != "" {
-		networkingClient, err := config.NetworkingV2Client(getRegion(d, config), getSDN(d))
+		networkingClient, err := config.NetworkingV2Client(getRegion(d, config), omitSDN)
 		if err != nil {
 			return diag.Errorf("Error creating VKCS networking client: %s", err)
 		}
@@ -287,7 +287,7 @@ func resourceLoadBalancerUpdate(ctx context.Context, d *schema.ResourceData, met
 
 	// Security Groups get updated separately.
 	if d.HasChange("security_group_ids") {
-		networkingClient, err := config.NetworkingV2Client(getRegion(d, config), getSDN(d))
+		networkingClient, err := config.NetworkingV2Client(getRegion(d, config), omitSDN)
 		if err != nil {
 			return diag.Errorf("Error creating VKCS networking client: %s", err)
 		}
