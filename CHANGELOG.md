@@ -8,6 +8,7 @@ description: |-
 # VKCS Provider's changelog
 
 #### v0.1.15 (unreleased)
+- Add deprecation warning to "security_group_ids" field of resource_vkcs_lb_loadbalancer
 - Fix error of ignoring restore_point field in resource_vkcs_db_instance and resource_vkcs_db_cluster
 
 #### v0.1.14
